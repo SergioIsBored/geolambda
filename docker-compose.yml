@@ -45,11 +45,11 @@ services:
     links:
       - core
 
-  netcdf4:
+  netcdf:
     build:
       context: .
-      dockerfile: Dockerfile.netcdf4
-    image: 'sergio92/geolambda:netcdf4'
+      dockerfile: Dockerfile.netcdf
+    image: 'sergio92/geolambda:netcdf'
     entrypoint: /bin/bash
     links:
       - core
