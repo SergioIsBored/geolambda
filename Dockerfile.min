@@ -1,4 +1,4 @@
-FROM developmentseed/geolambda:core
+FROM sergio92/geolambda:core
 
 # GDAL2
 RUN \

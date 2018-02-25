@@ -1,4 +1,4 @@
-FROM developmentseed/geolambda:base
+FROM sergio92/geolambda:base
 
 RUN \
     yum -y update; \
@@ -17,8 +17,10 @@ ENV \
 	HDF4_VERSION=4.2.12 \
 	SZIP_VERSION=2.1.1 \
 	HDF5_VERSION=1.10.1 \
+    M4_VERSION=1.4.10\
+    NETCDF_VERSION=4.6.0 \
 	OPENJPEG_VERSION=2.3.0 \
-	GDAL_VERSION=2.2.2
+	GDAL_VERSION=2.2.3
 
 RUN \
 	pip-2.7 install numpy; \
