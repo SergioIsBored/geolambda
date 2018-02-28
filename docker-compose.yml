@@ -6,14 +6,14 @@ services:
     build:
       context: .
       dockerfile: Dockerfile.base
-    image: 'sergio92/geolambda:base'
+    image: 'developmentseed/geolambda:base'
     entrypoint: /bin/bash
 
   core:
     build:
       context: .
       dockerfile: Dockerfile.core
-    image: 'sergio92/geolambda:core'
+    image: 'developmentseed/geolambda:core'
     entrypoint: /bin/bash
     links:
       - base
@@ -22,7 +22,7 @@ services:
     build:
       context: .
       dockerfile: Dockerfile.min
-    image: 'sergio92/geolambda:min'
+    image: 'developmentseed/geolambda:min'
     entrypoint: /bin/bash
     links:
       - core
@@ -31,7 +31,7 @@ services:
     build:
       context: .
       dockerfile: Dockerfile.full
-    image: 'sergio92/geolambda:full'
+    image: 'developmentseed/geolambda:full'
     entrypoint: /bin/bash
     links:
       - core
@@ -40,16 +40,7 @@ services:
     build:
       context: .
       dockerfile: Dockerfile.hdf
-    image: 'sergio92/geolambda:hdf'
-    entrypoint: /bin/bash
-    links:
-      - core
-
-  netcdf:
-    build:
-      context: .
-      dockerfile: Dockerfile.netcdf
-    image: 'sergio92/geolambda:netcdf'
+    image: 'developmentseed/geolambda:hdf'
     entrypoint: /bin/bash
     links:
       - core
@@ -58,7 +49,15 @@ services:
     build:
       context: .
       dockerfile: Dockerfile.cloud
-    image: 'sergio92/geolambda:cloud'
+    image: 'developmentseed/geolambda:cloud'
     entrypoint: /bin/bash
     links:
       - core
+
+#  runner:
+#    build:
+#      context: .
+#      dockerfile: Dockerfile.runner
+#    image: 'developmentseed/geolamnda:runner'
+#    links:
+#      - base
