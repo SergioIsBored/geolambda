@@ -1,4 +1,4 @@
-FROM sergio92/geolambda:core
+FROM developmentseed/geolambda:core
 
 # libopenjpeg
 RUN \
@@ -44,25 +44,6 @@ RUN \
     make && make install && cd .. && \
     rm -rf hdf5-$HDF5_VERSION*
 
-#netcdf4
-RUN \
-    wget ftp://ftp.gnu.org/gnu/m4/m4-$M4_VERSION.tar.gz && \
-    tar -xvzf m4-$M4_VERSION.tar.gz && \
-    cd m4-$M4_VERSION && \
-    ./configure && \
-    make && make install && cd .. && \
-    rm -rf netcdf-$NETCDF_VERSION && \
-    wget ftp://ftp.unidata.ucar.edu/pub/netcdf/netcdf-$NETCDF_VERSION.tar.gz && \
-    tar -xvzf netcdf-$NETCDF_VERSION.tar.gz && \
-    cd netcdf-$NETCDF_VERSION && \
-    ./configure \
-    CPPFLAGS=-I$PREFIX/include \
-    LDFLAGS=-L$PREFIX/lib \
-    LIBS="-lz -ldl -lm" \
-    --prefix=$PREFIX; \
-    make && make install && cd .. && \
-    rm -rf netcdf-$NETCDF_VERSION
-
 # GDAL
 RUN \
     wget http://download.osgeo.org/gdal/$GDAL_VERSION/gdal-$GDAL_VERSION.tar.gz && \
@@ -72,7 +53,6 @@ RUN \
         --prefix=$PREFIX \
         --with-hdf4=$PREFIX \
         --with-hdf5=$PREFIX \
-        --with-netcdf=$PREFIX \
         --with-openjpeg \
         --without-python \
         #--with-geos=$PREFIX/bin/geos-config \
