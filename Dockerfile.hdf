@@ -9,6 +9,15 @@ RUN \
     make && make install && cd .. && \
     rm -rf szip-$SZIP_VERSION*
 
+# zlib
+RUN \
+    wget http://www.zlib.net/zlib-$ZLIB_VERSION.tar.gz && \
+    tar -vxzf zlib-$ZLIB_VERSION.tar.gz && \
+    cd zlib-$ZLIB_VERSION && \
+    ./configure --prefix=$PREFIX && \
+    make && make install && cd .. && \
+    rm -rf zlib-$ZLIB_VERSION*
+
 # libhdf4
 RUN \
     yum install -y bison flex && \
@@ -31,6 +40,8 @@ RUN \
     cd hdf5-$HDF5_VERSION && \
     ./configure \
         --prefix=$PREFIX \
+        --enable-hl \
+        --with-zlib=$PREFIX \
         --with-szlib=$PREFIX; \
     make && make install && cd .. && \
     rm -rf hdf5-$HDF5_VERSION*
